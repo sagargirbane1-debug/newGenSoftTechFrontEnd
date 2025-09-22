@@ -1,0 +1,58 @@
+<h2>Courses Management</h2>
+
+<!-- Course Form -->
+<form (ngSubmit)="onSubmit()" #courseForm="ngForm" class="course-form">
+  <input
+    type="text"
+    [(ngModel)]="selectedCourse.courseName"
+    name="courseName"
+    placeholder="Course Name"
+    required
+  />
+
+  <input
+    type="text"
+    [(ngModel)]="selectedCourse.duration"
+    name="duration"
+    placeholder="Duration (e.g. 3 Months)"
+    required
+  />
+
+  <input
+    type="number"
+    [(ngModel)]="selectedCourse.fees"
+    name="fees"
+    placeholder="Course Fees"
+    required
+  />
+
+  <button type="submit">{{ isEditing ? 'Update Course' : 'Add Course' }}</button>
+  <button type="button" (click)="resetForm()">Clear</button>
+</form>
+
+<hr />
+
+<!-- Courses Table -->
+<table class="course-table">
+  <thead>
+    <tr>
+      <th style="width: 10%;">ID</th>
+      <th style="width: 40%;">Course Name</th>
+      <th style="width: 25%;">Duration</th>
+      <th style="width: 15%;">Fees</th>
+      <th style="width: 20%;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courses">
+      <td>{{ course.id }}</td>
+      <td>{{ course.courseName }}</td>
+      <td>{{ course.duration }}</td>
+      <td>₹{{ course.fees }}</td>
+      <td>
+        <button type="button" (click)="onEdit(course)">Edit</button>
+        <button type="button" (click)="onDelete(course.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

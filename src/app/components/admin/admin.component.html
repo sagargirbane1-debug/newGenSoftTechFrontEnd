@@ -1,0 +1,37 @@
+<div class="layout">
+  <!-- Header -->
+  <header class="header">
+    <h1 class="title">NEW GEN SOFTECH INSTITUTE</h1>
+    <div class="admin-icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin" />
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="main">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a routerLink="home" routerLinkActive="active-link">Home</a></li>
+        <li><a routerLink="students" routerLinkActive="active-link">Students</a></li>
+        <li><a routerLink="fees" routerLinkActive="active-link">Fees Deposit</a></li>
+        <li><a routerLink="Email" routerLinkActive="active-link">Email</a></li>
+        <li><a routerLink="courses" routerLinkActive="active-link">Courses</a></li>
+        <li><a routerLink="visuals" routerLinkActive="active-link">Visuals</a></li>
+        <li><a routerLink="faculties" routerLinkActive="active-link">Faculties</a></li>
+        <li><a routerLink="placements" routerLinkActive="active-link">Placements</a></li>
+      </ul>
+    </aside>
+
+    <!-- Content area -->
+    <div class="content">
+      <!-- Router outlet loads the selected component here -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 My Institute | All Rights Reserved</p>
+  </footer>
+</div>

@@ -1,0 +1,120 @@
+<div class="container">
+  <h2>Student Enquiry Form</h2>
+  <form #enquiryForm="ngForm" (ngSubmit)="onSubmit(enquiryForm)" novalidate>
+    
+    <!-- Student Name -->
+    <label>Student Name:</label>
+    <input type="text" 
+           [(ngModel)]="enquiry.studentName" 
+           name="studentName" 
+           required 
+           pattern="^[A-Za-z ]{3,30}$"
+           #studentName="ngModel"
+           [class.invalid]="studentName.invalid && studentName.touched">
+    <small *ngIf="studentName.invalid && studentName.touched" class="error-msg">
+      Name must be 3–30 letters (alphabets only).
+    </small>
+
+    <!-- Mobile Number -->
+    <label>Mobile Number:</label>
+    <input type="text" 
+           [(ngModel)]="enquiry.mobileNumber" 
+           name="mobileNumber" 
+           required 
+           pattern="^[6-9][0-9]{9}$"
+           #mobileNumber="ngModel"
+           [class.invalid]="mobileNumber.invalid && mobileNumber.touched">
+    <small *ngIf="mobileNumber.invalid && mobileNumber.touched" class="error-msg">
+      Enter a valid 10-digit Indian mobile number.
+    </small>
+
+    <!-- Email -->
+    <label>Email:</label>
+<input type="email" 
+       [(ngModel)]="enquiry.email" 
+       name="email" 
+       required
+       pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$"
+       #email="ngModel"
+       [class.invalid]="email.invalid && email.touched">
+
+<small *ngIf="email.errors?.['required'] && email.touched" class="error-msg">
+  Email is required.
+</small>
+<small *ngIf="email.errors?.['pattern'] && email.touched" class="error-msg">
+  Enter a valid email (must include {{at}} and end with .com).
+</small>
+
+    <!-- Qualification -->
+    <label>Qualification:</label>
+    <input type="text" 
+           [(ngModel)]="enquiry.qualification" 
+           name="qualification"
+           pattern="^[A-Za-z0-9 .,-]{2,50}$"
+           #qualification="ngModel"
+           [class.invalid]="qualification.invalid && qualification.touched">
+    <small *ngIf="qualification.invalid && qualification.touched" class="error-msg">
+      Only letters, numbers, space, dot, comma allowed (2–50 chars).
+    </small>
+
+    <!-- Passing Year -->
+    <label>Passing Year:</label>
+    <input type="text" 
+           [(ngModel)]="enquiry.passingYear" 
+           name="passingYear"
+           pattern="^(19|20)[0-9]{2}$"
+           #passingYear="ngModel"
+           [class.invalid]="passingYear.invalid && passingYear.touched">
+    <small *ngIf="passingYear.invalid && passingYear.touched" class="error-msg">
+      Enter a valid year (e.g., 2023).
+    </small>
+
+    <!-- Course Name -->
+    <label>Course Name:</label>
+    <input type="text" 
+           [(ngModel)]="enquiry.courseName" 
+           name="courseName"
+           pattern="^[A-Za-z0-9 ]{2,50}$"
+           #courseName="ngModel"
+           [class.invalid]="courseName.invalid && courseName.touched">
+    <small *ngIf="courseName.invalid && courseName.touched" class="error-msg">
+      Only letters/numbers (2–50 chars).
+    </small>
+
+    <!-- Course Mode -->
+    <label>Course Mode:</label>
+    <select [(ngModel)]="enquiry.courseMode" 
+            name="courseMode" 
+            required 
+            #courseMode="ngModel"
+            [class.invalid]="courseMode.invalid && courseMode.touched">
+      <option value="" disabled selected>Select Mode</option>
+      <option value="Online">Online</option>
+      <option value="Offline">Offline</option>
+    </select>
+    <small *ngIf="courseMode.invalid && courseMode.touched" class="error-msg">
+      Please select a course mode.
+    </small>
+
+    <!-- Address -->
+    <label>Address:</label>
+    <textarea [(ngModel)]="enquiry.address" 
+              name="address" 
+              required 
+              minlength="5" 
+              maxlength="200"
+              #address="ngModel"
+              [class.invalid]="address.invalid && address.touched"></textarea>
+    <small *ngIf="address.invalid && address.touched" class="error-msg">
+      Address must be 5–200 characters.
+    </small>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="isSubmitting || enquiryForm.invalid">
+      {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+    </button>
+  </form>
+
+  <!-- Loader -->
+  <div *ngIf="isSubmitting" class="loader"></div>
+</div>
