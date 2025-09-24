@@ -1,0 +1,30 @@
+<div class="email-container">
+  <h2>📧 Send Email</h2>
+
+  <form (ngSubmit)="sendEmail()">
+    <div>
+      <label>Subject:</label>
+      <input type="text" [(ngModel)]="email.subject" name="subject" required />
+    </div>
+
+    <div>
+      <label>Message:</label>
+      <textarea [(ngModel)]="email.body" name="body" required></textarea>
+    </div>
+
+    <div>
+      <label>Send To:</label>
+      <select [(ngModel)]="email.group" name="group" required>
+        <option value="">-- Select Group --</option>
+        <option value="female">All Girls</option>
+        <option value="male">All Boys</option>
+        <option value="students">All Students</option>
+        <option value="faculties">All Faculty Members</option>
+      </select>
+    </div>
+
+    <button type="submit">Send Email</button>
+  </form>
+
+  <p class="response">{{ responseMessage }}</p>
+</div>

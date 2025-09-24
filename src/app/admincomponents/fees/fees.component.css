@@ -1,0 +1,56 @@
+.update-fees-form {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: #fdfdfd;
+}
+
+.update-fees-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #5d5038;
+}
+
+.update-fees-form div {
+  margin-bottom: 15px;
+}
+
+.update-fees-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.update-fees-form input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.update-fees-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #5d5038;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.update-fees-form button:hover {
+  background-color: burlywood;
+  color: black;
+}
+
+.message {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+  color: green;
+} 

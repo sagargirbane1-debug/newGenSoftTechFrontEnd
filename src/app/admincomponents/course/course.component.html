@@ -1,58 +1,100 @@
-<h2>Courses Management</h2>
+<div class="tabs-container" >
+  <div class="tabs">
+    <button [class.active]="selectedTab === 'enquiry'" (click)="selectTab('addCourse')">
+      Add new Course
+    </button>
 
-<!-- Course Form -->
-<form (ngSubmit)="onSubmit()" #courseForm="ngForm" class="course-form">
-  <input
-    type="text"
-    [(ngModel)]="selectedCourse.courseName"
-    name="courseName"
-    placeholder="Course Name"
-    required
-  />
+    <button [class.active]="selectedTab === 'registered'" (click)="selectTab('All_Courses')">
+      All Courses
+    </button>
+  </div>
+</div>
 
-  <input
-    type="text"
-    [(ngModel)]="selectedCourse.duration"
-    name="duration"
-    placeholder="Duration (e.g. 3 Months)"
-    required
-  />
+<div class="course-form" *ngIf="selectedTab === 'addCourse'">
+  <h2>Add New Course</h2>
 
-  <input
-    type="number"
-    [(ngModel)]="selectedCourse.fees"
-    name="fees"
-    placeholder="Course Fees"
-    required
-  />
+  <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+    <div>
+      <label for="courseName">Course Name:</label>
+      <input
+        type="text"
+        id="courseName"
+        [(ngModel)]="course.courseName"
+        name="courseName"
+        required
+      />
+    </div>
 
-  <button type="submit">{{ isEditing ? 'Update Course' : 'Add Course' }}</button>
-  <button type="button" (click)="resetForm()">Clear</button>
-</form>
+    <div>
+      <label for="discription">Description:</label>
+      <input
+        type="text"
+        id="discription"
+        [(ngModel)]="course.discription"
+        name="discription"
+        required
+      />
+    </div>
 
-<hr />
+    <div>
+      <label for="fees">Fees:</label>
+      <input
+        type="number"
+        id="fees"
+        [(ngModel)]="course.fees"
+        name="fees"
+        required
+      />
+    </div>
 
-<!-- Courses Table -->
-<table class="course-table">
+    <div>
+      <label for="duration">Duration:</label>
+      <input
+        type="text"
+        id="duration"
+        [(ngModel)]="course.duration"
+        name="duration"
+        required
+      />
+    </div>
+
+    <button type="submit" [disabled]="!courseForm.form.valid">
+      Add Course
+    </button>
+  </form>
+
+  <p *ngIf="message" style="margin-top: 10px;">{{ message }}</p>
+</div>
+
+
+
+
+<table border="1" cellpadding="8" cellspacing="0" width="100%" *ngIf="selectedTab === 'All_Courses'">
   <thead>
     <tr>
-      <th style="width: 10%;">ID</th>
-      <th style="width: 40%;">Course Name</th>
-      <th style="width: 25%;">Duration</th>
-      <th style="width: 15%;">Fees</th>
-      <th style="width: 20%;">Actions</th>
+      <th>ID</th>
+      <th>Course Name</th>
+      <th>Description</th>
+      <th>Fees</th>
+      <th>Duration</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let course of courses">
-      <td>{{ course.id }}</td>
+      <td>{{ course.course_id }}</td>
       <td>{{ course.courseName }}</td>
+      <td>{{ course.discription }}</td>
+      <td>{{ course.fees }}</td>
       <td>{{ course.duration }}</td>
-      <td>₹{{ course.fees }}</td>
       <td>
-        <button type="button" (click)="onEdit(course)">Edit</button>
-        <button type="button" (click)="onDelete(course.id)">Delete</button>
+        <button (click)="deleteCourse(course.course_id)">Delete</button>
+        <button>Edit</button>
       </td>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="courses.length === 0">
+  No courses available.
+</div>

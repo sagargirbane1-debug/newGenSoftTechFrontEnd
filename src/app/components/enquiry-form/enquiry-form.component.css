@@ -1,42 +1,39 @@
-.container {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+
+/* Focus effect */
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.3);
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-label {
-  font-weight: bold;
-  margin-top: 12px;
-  display: block;
-  color: #444;
-}
-
-input, select, textarea {
+/* ✅ Multi-select dropdown styling */
+.multi-select {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   margin-top: 6px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
-  box-sizing: border-box;
+  height: auto;
+  max-height: 150px;   /* 👈 scrollable height */
+  overflow-y: auto;
+  background-color: #f9f9ff;
+  cursor: pointer;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
+.multi-select option {
+  padding: 8px;
+  background: #ffffff;
+  color: #333;
+  transition: background 0.2s, color 0.2s;
 }
 
+.multi-select option:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+/* Buttons */
 button {
   width: 100%;
   margin-top: 20px;
@@ -47,7 +44,7 @@ button {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
 }
 
 button:disabled {
@@ -57,8 +54,10 @@ button:disabled {
 
 button:hover:not(:disabled) {
   background: #0056b3;
+  transform: scale(1.02);
 }
 
+/* Error message */
 .error-msg {
   color: #d9534f;
   font-size: 12px;
@@ -66,7 +65,124 @@ button:hover:not(:disabled) {
   display: block;
 }
 
+/* Invalid input */
 .invalid {
   border: 1px solid #d9534f !important;
   background-color: #fff8f8;
+}
+
+/* Loader (optional styling if you show spinner) */
+.loader {
+  margin: 15px auto;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */
+
+
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('/assets/Images/login_Background.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Form container */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.6);
+/* white with transparency */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Headings */
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input styles */
+input, select, textarea, mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Error messages */
+.error-msg {
+  color: red;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Success message */
+.success-msg {
+  color: green;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #2c3e50;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #1a242f;
+}
+
+/* Invalid input style */
+.invalid {
+  border: 1px solid red;
+}
+
+
+input{
+backdrop-filter: blur(10px);
 }

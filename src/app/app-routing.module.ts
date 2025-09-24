@@ -8,14 +8,14 @@ import { CourseComponent } from './admincomponents/course/course.component';
 import { VisualsComponent } from './admincomponents/visuals/visuals.component';
 import { FacultiesComponent } from './admincomponents/faculties/faculties.component';
 import { PlacementsComponent } from './admincomponents/placements/placements.component';
-import { EnquiriesComponent } from './admincomponents/enquiries/enquiries.component';
+import { EmailComponent } from './admincomponents/email/email.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'students', component: StudentsComponent },
   { path: 'fees', component: FeesComponent },
-  { path: 'Email', component: EnquiriesComponent },
-  { path: 'courses', component: CourseComponent },  // ✅ Use CourseComponent here
+  { path: 'courses', component: CourseComponent }, 
+  { path : 'Email', component:EmailComponent},
   { path: 'visuals', component: VisualsComponent },
   { path: 'faculties', component: FacultiesComponent },
   { path: 'placements', component: PlacementsComponent },

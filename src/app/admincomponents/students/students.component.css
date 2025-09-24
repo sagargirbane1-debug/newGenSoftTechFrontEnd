@@ -1,24 +1,27 @@
-/* Tabs */
-.tabs-container {
-  position: sticky;
-  top: 0;
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;           
+  padding: 10px;
+  box-sizing: border-box;
   background-color: #f4f6f9;
-  z-index: 10;
-  transition: transform 0.3s ease;
+  overflow: hidden;         
 }
 
-.tabs-container.hidden {
-  transform: translateY(-100%);
-}
-
-.tabs {
-  margin-bottom: 5px; /* reduced margin */
+.tabs-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: #f4f6f9;
+  margin-bottom: 5px;
 }
 
 .tabs button {
-  padding: 6px 12px;  /* smaller buttons */
+  padding: 6px 12px;
   margin-right: 6px;
-  font-size: 13px;    /* smaller text */
+  font-size: 13px;
   border: none;
   border-radius: 4px;
   background: #e0e0e0;
@@ -26,54 +29,45 @@
   font-weight: bold;
   transition: background 0.3s, color 0.3s;
 }
-
 .tabs button.active {
   background: #007bff;
   color: white;
 }
 
-/* Table Header / Controls */
-.table-header {
+.top-right-controls {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 5px; /* smaller space */
   gap: 5px;
   flex-wrap: wrap;
+  align-items: center;
 }
-
-.table-header input {
-  padding: 5px 8px;    /* smaller input */
-  font-size: 13px;     /* smaller text */
+.top-right-controls input {
+  padding: 5px 8px;
+  font-size: 13px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
-
-.table-header button {
-  padding: 5px 10px;   /* smaller buttons */
+.top-right-controls button {
+  padding: 5px 10px;
   font-size: 13px;
   border-radius: 4px;
   border: none;
   background-color: #2c3e50;
   color: white;
   cursor: pointer;
-  transition: background 0.3s;
 }
-
-.table-header button:hover {
+.top-right-controls button:hover {
   background-color: #007bff;
 }
 
-/* Table Container */
-.table-container {
-  max-height: 700px;     /* increased height */
-  overflow-y: auto;
+.table-wrapper {
+  flex: 1;                
+  overflow-y: auto;       
   border: 1px solid #ddd;
-  padding: 10px;
-  background-color: #fff;
   border-radius: 5px;
+  background-color: #fff;
+  padding: 5px;
 }
 
-/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -104,11 +98,10 @@ tbody tr:hover {
   cursor: pointer;
 }
 
-/* Responsive */
 @media screen and (max-width: 1200px) {
   .tabs button,
-  .table-header input,
-  .table-header button {
+  .top-right-controls input,
+  .top-right-controls button {
     font-size: 11px;
     padding: 4px 6px;
   }
@@ -116,9 +109,5 @@ tbody tr:hover {
   table th, table td {
     font-size: 12px;
     padding: 6px;
-  }
-
-  .table-container {
-    max-height: 500px;
   }
 }

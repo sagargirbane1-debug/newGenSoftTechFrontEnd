@@ -1,4 +1,4 @@
-.layout {
+ .layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -6,11 +6,16 @@
 
 
 .header {
-  background: #2c3e50;
+  background: #5d5038;
   color: white;
   padding: 20px;
   text-align: center;
   font-size: 28px;
+  font-weight: bold;
+}
+
+.header .title {
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -23,7 +28,7 @@
 
 .sidebar {
   width: 220px;
-  background: #34495e;
+  background: #5d5038;
   color: white;
   padding: 20px 10px;
 }
@@ -49,26 +54,25 @@
 }
 
 .sidebar ul li a:hover {
-  background: #f39c12;
+  background: burlywood;
   color: black;
 }
 
 .content {
   flex: 1;
   padding: 20px;
-  background: #ecf0f1;
+  background: beige; 
   overflow-y: auto;
 }
 
 
 .footer {
-  background: #2c3e50;
+  background: #5d5038;
   color: white;
   text-align: center;
   padding: 15px;
   font-size: 16px;
 }
-
 
 button {
   padding: 14px 24px;
@@ -76,7 +80,7 @@ button {
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  background: #2c3e50;
+  background: #5d5038;
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -84,18 +88,19 @@ button {
 }
 
 button:hover {
-  background: #f39c12;
+  background: burlywood;
   color: black;
   transform: scale(1.05);
 }
 
 .btn-danger {
-  background: #e74c3c;
+  background: sienna;
 }
 
 .btn-success {
-  background: #27ae60;
+  background: darkkhaki;
 }
+
 
 table {
   width: 100%;
@@ -106,16 +111,17 @@ table {
 
 table th,
 table td {
-  border: 1px solid #ccc;
+  border: 1px solid #ddda16;
   padding: 12px 15px;
   text-align: left;
 }
 
 table th {
-  background: #2c3e50;
+  background: #5d5038;
   color: white;
   font-size: 18px;
 }
+
 
 @media (max-width: 768px) {
   .main {
@@ -146,32 +152,8 @@ table th {
     display: block;
   }
 }
-/* Layout */
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
 
-/* Header */
-.header {
-  background: #2c3e50;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;   
-  align-items: center;
-  font-size: 22px;
-  font-weight: bold;
-  position: relative;
-}
 
-.header .title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* Admin Icon */
 .admin-icon img {
   width: 40px;
   height: 40px;
@@ -184,32 +166,9 @@ table th {
 
 .admin-icon img:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 10px #f39c12;
+  box-shadow: 0 0 10px burlywood;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .main {
-    flex-direction: column;
-  }
 
-}
-.layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* allows footer to stay at bottom */
-}
 
-.main {
-  display: flex;
-  flex: 1; /* makes main content take all available space above footer */
-}
-
-.footer {
-  background: #2c3e50;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 16px;
-  flex-shrink: 0; /* ensures footer never shrinks */
-}
+ 

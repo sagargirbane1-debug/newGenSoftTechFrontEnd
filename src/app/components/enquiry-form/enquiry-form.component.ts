@@ -8,43 +8,54 @@ import { EnquiryServiceService } from 'src/app/services/enquiry-service.service'
   styleUrls: ['./enquiry-form.component.css']
 })
 export class EnquiryFormComponent {
-enquiry = {
+  enquiry = {
     studentName: '',
     mobileNumber: '',
     email: '',
     qualification: '',
     passingYear: '',
-    courseName: '',
+    courses: [] as string[],
     courseMode: '',
     address: ''
   };
-at: any = "@";
+
+  availableCourses: string[] = [
+    'Java', 'Core Java', 'Spring Boot', 'Python', 'NodeJS', 'Angular',
+    'HTML', 'CSS', 'C++', 'Data Analyst', 'Data Science'
+  ];
+
+  isSubmitting = false;
+  successMessage = '';
+  at: string = "@";
 
   constructor(private enquiryService: EnquiryServiceService) {}
-isSubmitting = false;
 
-onSubmit(form: NgForm) {
-  this.isSubmitting = true; // disable button
-
-  this.enquiryService.submitEnquiry(this.enquiry).subscribe({
-    next: (response) => {
-      alert('Enquiry submitted successfully!');
-      console.log(response);
-      this.resetForm();
-              form.resetForm();
-
-      
-
-
-      this.isSubmitting = false; // enable button again
-    },
-    error: (error) => {
-      alert('Error submitting enquiry');
-      console.error(error);
-      this.isSubmitting = false; // enable button again
+  onSubmit(form: NgForm) {
+    // Validate form
+    if (!form.valid || this.enquiry.courses.length === 0) {
+      Object.values(form.controls).forEach(control => {
+        control.markAsTouched();
+      });
+      this.successMessage = '';
+      return;
     }
-  });
-}
+
+    this.isSubmitting = true;
+
+    this.enquiryService.submitEnquiry(this.enquiry).subscribe({
+      next: (res) => {
+        this.successMessage = 'Enquiry submitted successfully!';
+        form.resetForm();
+        this.resetForm();
+        this.isSubmitting = false;
+      },
+      error: (err) => {
+        alert('Error submitting enquiry');
+        console.error(err);
+        this.isSubmitting = false;
+      }
+    });
+  }
 
   resetForm() {
     this.enquiry = {
@@ -53,7 +64,7 @@ onSubmit(form: NgForm) {
       email: '',
       qualification: '',
       passingYear: '',
-      courseName: '',
+      courses: [],
       courseMode: '',
       address: ''
     };

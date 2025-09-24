@@ -1,0 +1,34 @@
+
+
+<div class="page-wrapper">
+  <div class="fee-summary-container">
+
+    <!-- Fee Cards -->
+    <div class="fee-cards">
+      <div class="card">
+        <h3>Total Fees</h3>
+        <p>{{ totalFees | currency : 'INR' }}</p>
+      </div>
+      <div class="card">
+        <h3>Paid Fees</h3>
+        <p>{{ totalPaid | currency : 'INR' }}</p>
+      </div>
+      <div class="card">
+        <h3>Pending Fees</h3>
+        <p>{{ totalPending | currency : 'INR' }}</p>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-section">
+      <h3>Fee Summary Pie Chart</h3>
+      <canvas #pieCanvas></canvas>
+    </div>
+
+    <div class="chart-section">
+      <h3>Fee Summary Bar Chart</h3>
+      <canvas #barCanvas></canvas>
+    </div>
+
+  </div>
+</div>
