@@ -2,6 +2,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+
+export interface Student {
+  studentName: string;
+  mobileNumber: string;
+  email: string;
+  qualification: string;
+  passingYear: string;
+  courses: string[];
+  courseMode: string;
+  address: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,18 +24,24 @@ export class EnquiryServiceService {
 
   constructor(private http: HttpClient) {}
 
-  // Get all enquiry students
   getEnquiryStudents(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/getAllEquiries`);
   }
 
-  // Get all registered students
   getRegisteredStudents(): Observable<any[]> {
     return this.http.get<any[]>(`${this.registrationUrl}/getAll`);
   }
 
-  // Submit enquiry
   submitEnquiry(enquiry: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/newEnquiry`, enquiry);
   }
+
+  private baseUrl2 = 'http://localhost:9292/resistration_form';
+
+  
+
+  saveStudent(student: Student): Observable<Student> {
+    return this.http.post<Student>(`${this.baseUrl2}/saveNewStudent`, student);
+  }
 }
+

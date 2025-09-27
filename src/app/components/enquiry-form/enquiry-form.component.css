@@ -1,188 +1,311 @@
 
-/* Focus effect */
-input:focus, select:focus, textarea:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0px 0px 6px rgba(0, 123, 255, 0.3);
+
+/* 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ✅ Multi-select dropdown styling */
-.multi-select {
+html, body {
+  height: 100%;
+  min-height: 100vh;
   width: 100%;
-  padding: 8px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  height: auto;
-  max-height: 150px;   /* 👈 scrollable height */
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
   overflow-y: auto;
-  background-color: #f9f9ff;
-  cursor: pointer;
+  padding: 20px;
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #42e695);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
 }
 
-.multi-select option {
-  padding: 8px;
-  background: #ffffff;
-  color: #333;
-  transition: background 0.2s, color 0.2s;
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.multi-select option:hover {
-  background: #007bff;
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
   color: #fff;
 }
 
-/* Buttons */
-button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px;
-  background: #007bff;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-button:disabled {
-  background: #aaa;
-  cursor: not-allowed;
-}
-
-button:hover:not(:disabled) {
-  background: #0056b3;
-  transform: scale(1.02);
-}
-
-/* Error message */
-.error-msg {
-  color: #d9534f;
-  font-size: 12px;
-  margin-top: 3px;
-  display: block;
-}
-
-/* Invalid input */
-.invalid {
-  border: 1px solid #d9534f !important;
-  background-color: #fff8f8;
-}
-
-/* Loader (optional styling if you show spinner) */
-.loader {
-  margin: 15px auto;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #007bff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- */
-
-
-
-
-body, html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: url('/assets/Images/login_Background.png') no-repeat center center fixed;
-  background-size: cover;
-}
-
-/* Form container */
-.container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.6);
-/* white with transparency */
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-/* Headings */
-.container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Input styles */
 input, select, textarea, mat-form-field {
   width: 100%;
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
-/* Error messages */
+input:focus, select:focus, textarea:focus, mat-form-field:focus {
+  border: 1px solid #ff6ec4;
+  box-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
+  outline: none;
+}
+
+::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
 .error-msg {
-  color: red;
+  color: #ff4d6d;
   font-size: 13px;
   margin-top: -10px;
   margin-bottom: 10px;
   display: block;
 }
 
-/* Success message */
 .success-msg {
-  color: green;
+  color: #00ffb3;
   font-weight: bold;
   margin-bottom: 15px;
   text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
-/* Submit button */
 button[type="submit"] {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
-  background: #2c3e50;
-  color: white;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5, #42e695);
+  background-size: 200% 200%;
+  color: #fff;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 button[type="submit"]:hover {
-  background: #1a242f;
+  background-position: right center;
+  box-shadow: 0 0 15px #ff6ec4, 0 0 25px #7873f5;
+  transform: translateY(-2px);
 }
 
-/* Invalid input style */
 .invalid {
-  border: 1px solid red;
+  border: 1px solid #ff4d6d;
 }
 
+body::-webkit-scrollbar {
+  width: 6px;
+}
 
-input{
-backdrop-filter: blur(10px);
+body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+} */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 20px;
+  background: linear-gradient(270deg, #1a1a2e, #162447, #1f4068, #e43f5a, #fca311);
+  background-size: 1000% 1000%;
+  animation: gradientAnimation 25s ease infinite;
+  position: relative;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 10px 10px;
+  pointer-events: none;
+  animation: particleMove 60s linear infinite;
+}
+
+@keyframes particleMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 1000px 1000px; }
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(18px);
+  border: 2px solid rgba(255,255,255,0.2);
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  position: relative;
+  animation: floatForm 6s ease-in-out infinite;
+}
+
+@keyframes floatForm {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+input, select, textarea, mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.4);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus, mat-form-field:focus {
+  border: 1px solid #e43f5a;
+  box-shadow: 0 0 12px #e43f5a, 0 0 25px #fca311;
+  outline: none;
+}
+
+::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.error-msg {
+  color: #ff4d6d;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.success-msg {
+  color: #00ffb3;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #e43f5a, #fca311, #1f4068);
+  background-size: 200% 200%;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+button[type="submit"]:hover {
+  background-position: right center;
+  box-shadow: 0 0 20px #e43f5a, 0 0 30px #fca311;
+  transform: translateY(-3px);
+}
+
+.invalid {
+  border: 1px solid #ff4d6d;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+}
+
+/* Angular Material dropdown customization */
+::ng-deep .cdk-overlay-pane {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+  color: #fff !important;
+}
+
+::ng-deep .mat-select-panel {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+}
+
+::ng-deep .mat-option {
+  color: #fff !important;
+  transition: background 0.3s ease;
+}
+
+::ng-deep .mat-option:hover,
+::ng-deep .mat-option.mat-selected {
+  background: rgba(228, 63, 90, 0.3) !important;
+  color: #fff !important;
+}
+
+::ng-deep .mat-select-search-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+body {
+  justify-content: flex-start; 
+  padding-left: 50px;          
 }
