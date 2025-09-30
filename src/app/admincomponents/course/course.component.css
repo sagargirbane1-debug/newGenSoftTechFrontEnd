@@ -1,4 +1,4 @@
-.course-form {
+/* .course-form {
   max-width: 400px;
   margin: auto;
   padding: 20px;
@@ -50,4 +50,193 @@
   background-color: lightgray;
   color: darkgray;
   cursor: not-allowed;
+} */
+
+
+
+
+/* 
+.course-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 30px 25px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(18px);
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  animation: floatForm 6s ease-in-out infinite;
 }
+
+.course-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.course-form div {
+  margin-bottom: 15px;
+}
+
+.course-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.course-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.4);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.course-form input:focus {
+  border: 1px solid #e43f5a;
+  box-shadow: 0 0 12px #e43f5a, 0 0 25px #fca311;
+  outline: none;
+}
+
+.course-form button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #e43f5a, #fca311, #1f4068);
+  background-size: 200% 200%;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.course-form button:hover {
+  background-position: right center;
+  box-shadow: 0 0 20px #e43f5a, 0 0 30px #fca311;
+  transform: translateY(-3px);
+}
+
+.course-form button:disabled {
+  background-color: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  cursor: not-allowed;
+}
+
+@keyframes floatForm {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+} */
+
+
+
+
+
+.course-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  color: #000; /* Form default text color */
+}
+
+.course-form h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #000; /* Header text black */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.course-form div {
+  margin-bottom: 15px;
+}
+
+.course-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #000; /* Label text black */
+}
+
+.course-form input,
+.course-form textarea,
+.course-form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.7); /* Light background for contrast */
+  color: #000; /* Field text black */
+  transition: all 0.3s ease;
+}
+
+.course-form input:focus,
+.course-form textarea:focus,
+.course-form select:focus {
+  border: 1px solid #1f4068;
+  box-shadow: 0 0 8px #1f4068, 0 0 15px #fca311;
+  outline: none;
+}
+
+.course-form button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(45deg, #1f4068, #fca311, #e43f5a);
+  background-size: 200% 200%;
+  color: #000; /* Button text black */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.course-form button:hover {
+  background-position: right center;
+  box-shadow: 0 0 15px #1f4068, 0 0 25px #fca311;
+  transform: translateY(-2px);
+}
+
+.course-form button:disabled {
+  background-color: rgba(200,200,200,0.3);
+  color: #000; /* Disabled button text black */
+  cursor: not-allowed;
+}
+
+.course-form ::placeholder {
+  color: rgba(0,0,0,0.5); /* Placeholder black */
+}
+
+/* ============================= */
+/* Table text color black */
+/* ============================= */
+table, th, td {
+  color: #000; /* Table text black */
+}
+
+table th {
+  font-weight: bold;
+}
+

@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="page-layout">
 
   <div class="tabs-container">
@@ -55,7 +55,6 @@
       </tbody>
     </table>
 
-    <!-- Registered Students Table -->
     <table *ngIf="selectedTab === 'registered'">
       <thead>
         <tr>
@@ -92,4 +91,103 @@
     </table>
   </div>
 
+</div> -->
+
+
+
+
+
+
+<div class="page-layout">
+  <div class="tabs-container">
+    <div class="tabs">
+      <button [class.active]="selectedTab === 'enquiry'" (click)="selectTab('enquiry')">
+        Enquiry Students
+      </button>
+      <button [class.active]="selectedTab === 'registered'" (click)="selectTab('registered')">
+        Registered Students
+      </button>
+    </div>
+
+    <div class="top-right-controls">
+      <input type="text" placeholder="Search by ID, Name, Email" [(ngModel)]="searchText">
+      <button (click)="searchStudent()">Search</button>
+      <button (click)="resetFilter()">Reset</button>
+      <button (click)="addNewStudent()">Add New Student</button>
+      <button (click)="exportToExcel()">Export Excel</button>
+      <button (click)="exportToPDF()">Export PDF</button>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <!-- Enquiry Students Table -->
+    <table *ngIf="selectedTab === 'enquiry'" id="enquiryTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Qualification</th>
+          <th>Passing Year</th>
+          <th>Course Name</th>
+          <th>Course Mode</th>
+          <th>Address</th>
+          <th>Enquiry Time</th>
+          <th>Courses Selected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of filteredEnquiryStudents">
+          <td>{{ student.id }}</td>
+          <td>{{ student.studentName }}</td>
+          <td>{{ student.mobileNumber }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.qualification }}</td>
+          <td>{{ student.passingYear }}</td>
+          <td>{{ student.courseName }}</td>
+          <td>{{ student.courseMode }}</td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.enquirytime | date:'short' }}</td>
+          <td>{{ student.courseselected || 'Not Selected' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Registered Students Table -->
+    <table *ngIf="selectedTab === 'registered'" id="registeredTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Qualification</th>
+          <th>Passing Year</th>
+          <th>Address</th>
+          <th>Total Fees</th>
+          <th>Paid Fees</th>
+          <th>Remaining Fees</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of filteredRegisteredStudents">
+          <td>{{ student.id }}</td>
+          <td>{{ student.student_Name || 'N/A' }}</td>
+          <td>{{ student.email || 'N/A' }}</td>
+          <td>{{ student.mobileNumber || 'N/A' }}</td>
+          <td>{{ student.qualification || 'N/A' }}</td>
+          <td>{{ student.passing_year || 'N/A' }}</td>
+          <td>
+            {{ student.studentAddress?.city || '' }},
+            {{ student.studentAddress?.state || '' }},
+            {{ student.studentAddress?.country || '' }}
+          </td>
+          <td>{{ student.studentFeesRecord?.totalfees || 0 }}</td>
+          <td>{{ student.studentFeesRecord?.paidfees || 0 }}</td>
+          <td>{{ student.studentFeesRecord?.remainngfees || 0 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

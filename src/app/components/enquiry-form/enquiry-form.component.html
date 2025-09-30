@@ -1,96 +1,249 @@
-<body>
-
-<div class="container" style="backdrop-filter: blur(10px);
-">
+<!-- 
+ <body>
+  <div class="page-wrapper">
+    <mat-card class="container">
       <h2>Student Registration Form</h2>
+
       <form #enquiryForm="ngForm" (ngSubmit)="onSubmit(enquiryForm)" novalidate>
+        
+        <div *ngIf="successMessage" class="success-msg">
+          {{ successMessage }}
+        </div>
 
-        <div *ngIf="successMessage" class="success-msg">{{ successMessage }}</div>
-
-        <label>Student Name:</label>
-        <input type="text" name="studentName" [(ngModel)]="enquiry.studentName"
-               required pattern="^[A-Za-z ]{3,30}$"
-               #studentName="ngModel"
-               [class.invalid]="(studentName.invalid && studentName.touched) || (studentName.invalid && enquiryForm.submitted)">
-        <small *ngIf="(studentName.invalid && studentName.touched) || (studentName.invalid && enquiryForm.submitted)" class="error-msg">
-          Name must be 3–30 letters.
-        </small>
-
-        <label>Mobile Number:</label>
-        <input type="text" name="mobileNumber" [(ngModel)]="enquiry.mobileNumber"
-               required pattern="^[6-9][0-9]{9}$"
-               #mobileNumber="ngModel"
-               [class.invalid]="(mobileNumber.invalid && mobileNumber.touched) || (mobileNumber.invalid && enquiryForm.submitted)">
-        <small *ngIf="(mobileNumber.invalid && mobileNumber.touched) || (mobileNumber.invalid && enquiryForm.submitted)" class="error-msg">
-          Enter a valid 10-digit Indian mobile number.
-        </small>
-
-        <label>Email:</label>
-        <input type="email" name="email" [(ngModel)]="enquiry.email"
-               required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-               #email="ngModel"
-               [class.invalid]="(email.invalid && email.touched) || (email.invalid && enquiryForm.submitted)">
-        <small *ngIf="(email.errors?.['required'] && (email.touched || enquiryForm.submitted))" class="error-msg">
-          Email is required.
-        </small>
-        <small *ngIf="(email.errors?.['pattern'] && (email.touched || enquiryForm.submitted))" class="error-msg">
-          Enter a valid email (e.g., user@example.com).
-        </small>
-
-        <label>Qualification:</label>
-        <input type="text" name="qualification" [(ngModel)]="enquiry.qualification"
-               pattern="^[A-Za-z0-9 .,-]{2,50}$"
-               #qualification="ngModel"
-               [class.invalid]="(qualification.invalid && qualification.touched) || (qualification.invalid && enquiryForm.submitted)">
-        <small *ngIf="(qualification.invalid && qualification.touched) || (qualification.invalid && enquiryForm.submitted)" class="error-msg">
-          Only letters, numbers, space, dot, comma allowed (2–50 chars).
-        </small>
-
-        <label>Passing Year:</label>
-        <input type="text" name="passingYear" [(ngModel)]="enquiry.passingYear"
-               pattern="^(19|20)[0-9]{2}$"
-               #passingYear="ngModel"
-               [class.invalid]="(passingYear.invalid && passingYear.touched) || (passingYear.invalid && enquiryForm.submitted)">
-        <small *ngIf="(passingYear.invalid && passingYear.touched) || (passingYear.invalid && enquiryForm.submitted)" class="error-msg">
-          Enter a valid year (e.g., 2023).
-        </small>
-
-        <label>Courses:</label>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-select placeholder="Select Courses" [(ngModel)]="enquiry.courses" name="courses" multiple required>
+          <mat-label>Student Name</mat-label>
+          <input matInput name="studentName" [(ngModel)]="enquiry.studentName"
+                 required pattern="^[A-Za-z ]{3,30}$"
+                 #studentName="ngModel">
+          <mat-error *ngIf="studentName.invalid && (studentName.touched || enquiryForm.submitted)">
+            Name must be 3–30 letters.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mobile Number</mat-label>
+          <input matInput name="mobileNumber" [(ngModel)]="enquiry.mobileNumber"
+                 required pattern="^[6-9][0-9]{9}$"
+                 #mobileNumber="ngModel">
+          <mat-error *ngIf="mobileNumber.invalid && (mobileNumber.touched || enquiryForm.submitted)">
+            Enter a valid 10-digit Indian mobile number.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" [(ngModel)]="enquiry.email"
+                 required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                 #email="ngModel">
+          <mat-error *ngIf="email.errors?.['required']">
+            Email is required.
+          </mat-error>
+          <mat-error *ngIf="email.errors?.['pattern']">
+            Enter a valid email (e.g., user@example.com).
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Qualification</mat-label>
+          <input matInput name="qualification" [(ngModel)]="enquiry.qualification"
+                 pattern="^[A-Za-z0-9 .,-]{2,50}$"
+                 #qualification="ngModel">
+          <mat-error *ngIf="qualification.invalid && (qualification.touched || enquiryForm.submitted)">
+            Only letters, numbers, space, dot, comma allowed (2–50 chars).
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Passing Year</mat-label>
+          <input matInput name="passingYear" [(ngModel)]="enquiry.passingYear"
+                 pattern="^(19|20)[0-9]{2}$"
+                 #passingYear="ngModel">
+          <mat-error *ngIf="passingYear.invalid && (passingYear.touched || enquiryForm.submitted)">
+            Enter a valid year (e.g., 2023).
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select Courses</mat-label>
+          <mat-select [(ngModel)]="enquiry.courses" name="courses" multiple required>
             <mat-option *ngFor="let course of availableCourses" [value]="course">{{ course }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="!enquiry.courses?.length && enquiryForm.submitted">
+            Please select at least one course.
+          </mat-error>
         </mat-form-field>
-        <small *ngIf="(!enquiry.courses?.length && enquiryForm.submitted)" class="error-msg">
-          Please select at least one course.
-        </small>
 
-        <label>Course Mode:</label>
-        <select name="courseMode" [(ngModel)]="enquiry.courseMode" required
-                #courseMode="ngModel"
-                [class.invalid]="(courseMode.invalid && courseMode.touched) || (courseMode.invalid && enquiryForm.submitted)">
-          <option value="" disabled selected>Select Mode</option>
-          <option value="Online">Online</option>
-          <option value="Offline">Offline</option>
-        </select>
-        <small *ngIf="(courseMode.invalid && courseMode.touched) || (courseMode.invalid && enquiryForm.submitted)" class="error-msg">
-          Please select a course mode.
-        </small>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Course Mode</mat-label>
+          <mat-select name="courseMode" [(ngModel)]="enquiry.courseMode" required #courseMode="ngModel">
+            <mat-option value="Online">Online</mat-option>
+            <mat-option value="Offline">Offline</mat-option>
+          </mat-select>
+          <mat-error *ngIf="courseMode.invalid && (courseMode.touched || enquiryForm.submitted)">
+            Please select a course mode.
+          </mat-error>
+        </mat-form-field>
 
-        <label>Address:</label>
-        <textarea name="address" [(ngModel)]="enquiry.address" required minlength="5" maxlength="200"
-                  #address="ngModel"
-                  [class.invalid]="(address.invalid && address.touched) || (address.invalid && enquiryForm.submitted)"></textarea>
-        <small *ngIf="(address.invalid && address.touched) || (address.invalid && enquiryForm.submitted)" class="error-msg">
-          Address must be 5–200 characters.
-        </small>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Address</mat-label>
+          <textarea matInput name="address" [(ngModel)]="enquiry.address"
+                    required minlength="5" maxlength="200"
+                    #address="ngModel"></textarea>
+          <mat-error *ngIf="address.invalid && (address.touched || enquiryForm.submitted)">
+            Address must be 5–200 characters.
+          </mat-error>
+        </mat-form-field>
 
-        <button type="submit" [disabled]="isSubmitting">{{ isSubmitting ? 'Submitting...' : 'Submit' }}</button>
+        <button mat-raised-button color="primary" class="submit-btn" type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+        </button>
       </form>
-    </div>
+    </mat-card>
+  </div>
+</body>  --> 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+  <div class="page-wrapper">
+    <mat-card class="container">
+      <h2>Student Registration Form</h2>
+
+      <form #enquiryForm="ngForm" (ngSubmit)="onSubmit(enquiryForm)" novalidate>
+        
+        <div *ngIf="successMessage" class="success-msg">{{ successMessage }}</div>
+
+        <!-- All fields except City/State/Country -->
+        <ng-container *ngIf="!showCityState">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Student Name</mat-label>
+            <input id="name" matInput name="studentName" [(ngModel)]="enquiry.studentName"
+                   required pattern="^[A-Za-z ]{3,30}$" #studentName="ngModel">
+            <mat-error *ngIf="studentName.invalid && (studentName.touched || enquiryForm.submitted)">
+              Name must be 3–30 letters.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Mobile Number</mat-label>
+            <input id="name" matInput name="mobileNumber" [(ngModel)]="enquiry.mobileNumber"
+                   required pattern="^[6-9][0-9]{9}$" #mobileNumber="ngModel">
+            <mat-error *ngIf="mobileNumber.invalid && (mobileNumber.touched || enquiryForm.submitted)">
+              Enter a valid 10-digit Indian mobile number.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input id="name" matInput type="email" name="email" [(ngModel)]="enquiry.email"
+                   required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                   #email="ngModel">
+            <mat-error *ngIf="email.errors?.['required']">Email is required.</mat-error>
+            <mat-error *ngIf="email.errors?.['pattern']">Enter a valid email.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Qualification</mat-label>
+            <input id="name" matInput name="qualification" [(ngModel)]="enquiry.qualification"
+                   pattern="^[A-Za-z0-9 .,-]{2,50}$" #qualification="ngModel">
+            <mat-error *ngIf="qualification.invalid && (qualification.touched || enquiryForm.submitted)">
+              Only letters, numbers, space, dot, comma allowed (2–50 chars).
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Passing Year</mat-label>
+            <input id="name" matInput name="passingYear" [(ngModel)]="enquiry.passingYear"
+                   pattern="^(19|20)[0-9]{2}$" #passingYear="ngModel">
+            <mat-error *ngIf="passingYear.invalid && (passingYear.touched || enquiryForm.submitted)">
+              Enter a valid year.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Select Courses</mat-label>
+            <mat-select [(ngModel)]="enquiry.courses" name="courses" multiple required>
+              <mat-option *ngFor="let course of availableCourses" [value]="course">{{ course }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="!enquiry.courses?.length && enquiryForm.submitted">
+              Please select at least one course.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Course Mode</mat-label>
+            <mat-select name="courseMode" [(ngModel)]="enquiry.courseMode" required #courseMode="ngModel">
+              <mat-option value="Online">Online</mat-option>
+              <mat-option value="Offline">Offline</mat-option>
+            </mat-select>
+            <mat-error *ngIf="courseMode.invalid && (courseMode.touched || enquiryForm.submitted)">
+              Please select a course mode.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Address</mat-label>
+            <textarea id="name" matInput name="address" [(ngModel)]="enquiry.address"
+                      required minlength="5" maxlength="200"
+                      #address="ngModel" (focus)="showCityState = true"></textarea>
+            <mat-error *ngIf="address.invalid && (address.touched || enquiryForm.submitted)">
+              Address must be 5–200 characters.
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+        <!-- Show City/State/Country in place of above fields -->
+        <div *ngIf="showCityState">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>City</mat-label>
+            <input id="name" matInput name="city" [(ngModel)]="enquiry.city" required #city="ngModel">
+            <mat-error *ngIf="city.invalid && (city.touched || enquiryForm.submitted)">City is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>State</mat-label>
+            <input id="name" matInput name="state" [(ngModel)]="enquiry.state" required #state="ngModel">
+            <mat-error *ngIf="state.invalid && (state.touched || enquiryForm.submitted)">State is required.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Country</mat-label>
+            <input id="name" matInput name="country" [(ngModel)]="enquiry.country" required #country="ngModel">
+            <mat-error *ngIf="country.invalid && (country.touched || enquiryForm.submitted)">Country is required.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" class="submit-btn" type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+        </button>
+
+      </form>
+    </mat-card>
+  </div>
 </body>
-
-
-
-
